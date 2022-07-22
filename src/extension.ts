@@ -8,10 +8,12 @@ export function activate(context: vscode.ExtensionContext) {
 	
 	let disposable = vscode.commands.registerCommand('updatemetadatatester.injectMetadata', () => {
 		// FIXME: uri code not working
-		const uri = vscode.Uri.file('C:/Users/t-mlively/Documents/_WORK/ext_testing/single_cell.ipynb'); 
+		// const uri = vscode.Uri.file('C:/Users/t-mlively/Documents/_WORK/ext_testing/single_cell.ipynb'); 
+		const notebookUri = vscode.window.activeNotebookEditor?.notebook.uri;
 		const edit = new vscode.WorkspaceEdit();
-		const cellMetadataEdit = vscode.NotebookEdit.updateCellMetadata(0, { extraCellMetadata: true });
-		edit.set(uri, [cellMetadataEdit]);
+		const cellMetadataEdit = vscode.NotebookEdit.updateCellMetadata(0, { metadata: {attachments: true} });
+		if(notebookUri)
+			edit.set(notebookUri, [cellMetadataEdit]);
 		vscode.workspace.applyEdit(edit);
 		vscode.window.showInformationMessage('metadata update complete');
 	});
