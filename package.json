@@ -3,6 +3,7 @@
 	"displayName": "UpdateMetadataTester",
 	"description": "inject attachment data to ensure MarkupCells update their metadata properly via vscode API",
 	"version": "0.0.1",
+	"enabledApiProposals": ["notebookWorkspaceEdit"],
 	"engines": {
 		"vscode": "^1.69.0"
 	},
@@ -10,14 +11,14 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:updatemetadatatester.helloWorld"
+        "onCommand:updatemetadatatester.injectMetadata"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "updatemetadatatester.helloWorld",
-				"title": "Hello World"
+				"command": "updatemetadatatester.injectMetadata",
+				"title": "Inject Metadata"
 			}
 		]
 	},
